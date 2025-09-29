@@ -2,6 +2,9 @@ name: Generate ASCII Artwork
 
 on: 
   workflow_dispatch:
+  push:
+   branches:
+     - "feature-testing"  
 
 jobs:
   build-artwork:
@@ -20,4 +23,5 @@ jobs:
         sudo apt-get install cowsay -y
         echo $PATH
         export PATH="$PATH:/usr/games:/usr/local/games"
+
         cat advice.message | cowsay -f $(ls /usr/share/cowsay/cows | shuf -n 1)
